@@ -3,7 +3,6 @@ import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Mail, ArrowLeft, Check, Send } from 'lucide-react'
-import { ArrowRight } from 'lucide-react'
 
 function ForgotPassword() {
   const [email, setEmail] = useState('')
