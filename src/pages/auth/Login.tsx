@@ -1,9 +1,56 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { EyeOff, Mail, Lock, ArrowRight } from 'lucide-react'
+import { EyeOff, Mail, Lock, ArrowRight, Eye } from 'lucide-react'
+import Swal from 'sweetalert2'
 
 function Login() {
+
+    // สร้างตัวแปร state สำหรับแสดงรหัสผ่าน
+    // showPassword คือชื่อ state
+    // setShowPassword คือฟังก์ชันสำหรับเปลี่ยนค่า state
+    const [showPassword, setShowPassword] = useState(false)
+
+    // สร้างตัวแปร state สำหรับเก็บข้อมูลอีเมลและรหัสผ่าน
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    })
+
+    // สร้างฟังก์ชัน submitForm สำหรับจัดการการส่งฟอร์ม
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault() // ป้องกันการรีเฟรชหน้าเว็บ
+        console.log('Form submitted:', formData) // แสดงข้อมูลฟอร์มในคอนโซล
+        if (formData.email == "admin@email.com" && formData.password == "123456") {
+            // แสดงข้อความยืนยันการเข้าสู่ระบบสำเร็จ
+            Swal.fire({
+                title: 'เข้าสู่ระบบสำเร็จ',
+                text: 'ยินดีต้อนรับกลับ!',
+                icon: 'success',
+                confirmButtonText: 'ตกลง'
+            }).then(() => {
+                // นำทางไปยังหน้าแดชบอร์ดหลังจากกดยืนยัน
+                window.location.href = '/dashboard';
+            });
+        } else {
+            // แสดงข้อความเตือนหากข้อมูลไม่ถูกต้อง
+            Swal.fire({
+                title: 'เข้าสู่ระบบล้มเหลว',
+                text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+                icon: 'error',
+                confirmButtonText: 'ลองอีกครั้ง'
+            });
+        }
+    }
+
+    // สร้างฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงข้อมูลในฟอร์ม
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value // อัปเดตค่าใน formData ตามชื่อ input
+        })
+    }
 
   return (
     <>
@@ -15,7 +62,7 @@ function Login() {
       </CardHeader>
       
       <CardContent>
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email Field */}
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
@@ -30,6 +77,8 @@ function Login() {
                 required
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกอีเมลของคุณ"
+                value={formData.email}
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -44,16 +93,19 @@ function Login() {
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
                 className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกรหัสผ่านของคุณ"
+                value={formData.password}
+                onChange={handleInputChange}
               />
               <button
                 type="button"
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                onClick={() => setShowPassword(!showPassword)}
               >
-                <EyeOff className="h-5 w-5" />
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
           </div>
