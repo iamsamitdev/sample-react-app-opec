@@ -78,7 +78,7 @@ function Footer() {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-4 relative">
               ลิงก์ด่วน
-              <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+              <div className="absolute bottom-[-5px] left-0 w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
             </h3>
             <ul className="space-y-4">
               <li>
@@ -124,7 +124,7 @@ function Footer() {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-4 relative">
               บริการของเรา
-              <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+              <div className="absolute bottom-[-5px] left-0 w-12 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
             </h3>
             <ul className="space-y-4">
               <li>
@@ -158,7 +158,7 @@ function Footer() {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-4 relative">
               รับข่าวสาร
-              <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-pink-400 to-blue-400 rounded-full"></div>
+              <div className="absolute bottom-[-5px] left-0 w-12 h-1 bg-gradient-to-r from-pink-400 to-blue-400 rounded-full"></div>
             </h3>
             <p className="text-gray-300">
               สมัครรับข่าวสารและอัปเดตล่าสุดจากเรา เพื่อไม่พลาดความก้าวหน้าใหม่ๆ
