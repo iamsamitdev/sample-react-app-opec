@@ -7,12 +7,25 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { authLogout } from '@/services/apiAuth'
 
 interface AdminHeaderProps {
   onMenuClick: () => void
 }
 
 function AdminHeader({ onMenuClick }: AdminHeaderProps) {
+
+  // ฟังก์ชันสำหรับออกจากระบบ
+  const handleLogout = async () => {
+    try {
+      await authLogout()
+      localStorage.removeItem('token')
+      window.location.href = '/auth/login'
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
+
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -71,7 +84,7 @@ function AdminHeader({ onMenuClick }: AdminHeaderProps) {
                   ตั้งค่า
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">
+              <DropdownMenuItem className="text-red-600" onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 ออกจากระบบ
               </DropdownMenuItem>
