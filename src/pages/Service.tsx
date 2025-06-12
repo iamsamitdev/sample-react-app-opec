@@ -1,391 +1,383 @@
 import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { 
+  Monitor, 
+  Smartphone, 
+  Palette, 
+  Server, 
+  BarChart, 
+  Megaphone,
+  Users,
+  CheckCircle,
+  Star,
+  Clock,
+  Shield,
+  Zap
+} from 'lucide-react'
 
 function Service() {
+  const services = [
+    {
+      icon: Monitor,
+      title: "Web Development",
+      subtitle: "Modern websites that perform",
+      description: "Custom websites built with the latest technologies. From simple landing pages to complex web applications.",
+      features: ["React, Next.js, Vue.js", "Responsive Design", "SEO Optimized", "Performance First"],
+      color: "emerald",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
+      hoverBg: "group-hover:bg-emerald-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-emerald-200",
+      price: "Starting from $2,999"
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile Apps",
+      subtitle: "iOS & Android applications",
+      description: "Native and cross-platform mobile applications that provide exceptional user experiences.",
+      features: ["React Native, Flutter", "Native Performance", "App Store Ready", "Cross-Platform"],
+      color: "blue",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+      hoverBg: "group-hover:bg-blue-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-blue-200",
+      price: "Starting from $4,999"
+    },
+    {
+      icon: Palette,
+      title: "UI/UX Design",
+      subtitle: "Beautiful, functional interfaces",
+      description: "User-centered design that combines aesthetics with functionality for optimal user experience.",
+      features: ["User Research & Testing", "Wireframes & Prototypes", "Brand Identity", "Design Systems"],
+      color: "purple",
+      iconBg: "bg-purple-100",
+      iconColor: "text-purple-600",
+      hoverBg: "group-hover:bg-purple-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-purple-200",
+      price: "Starting from $1,999"
+    },
+    {
+      icon: Server,
+      title: "Backend Development",
+      subtitle: "Robust server solutions",
+      description: "Scalable backend systems and APIs that power your applications with reliability and performance.",
+      features: ["Node.js, Python, PHP", "Database Design", "API Development", "Cloud Integration"],
+      color: "orange",
+      iconBg: "bg-orange-100",
+      iconColor: "text-orange-600",
+      hoverBg: "group-hover:bg-orange-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-orange-200",
+      price: "Starting from $3,499"
+    },
+    {
+      icon: BarChart,
+      title: "Data Analytics",
+      subtitle: "Insights that drive decisions",
+      description: "Transform your data into actionable insights with comprehensive analytics and visualization solutions.",
+      features: ["Data Visualization", "Business Intelligence", "Custom Dashboards", "Real-time Analytics"],
+      color: "red",
+      iconBg: "bg-red-100",
+      iconColor: "text-red-600",
+      hoverBg: "group-hover:bg-red-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-red-200",
+      price: "Starting from $2,499"
+    },
+    {
+      icon: Megaphone,
+      title: "Digital Marketing",
+      subtitle: "Grow your online presence",
+      description: "Strategic digital marketing campaigns that increase visibility and drive conversions.",
+      features: ["SEO & SEM", "Social Media Marketing", "Content Strategy", "Performance Tracking"],
+      color: "indigo",
+      iconBg: "bg-indigo-100",
+      iconColor: "text-indigo-600",
+      hoverBg: "group-hover:bg-indigo-500",
+      hoverIcon: "group-hover:text-white",
+      borderColor: "hover:border-indigo-200",
+      price: "Starting from $1,499"
+    }
+  ];
+
+  const processSteps = [
+    {
+      number: "01",
+      title: "Discovery & Strategy",
+      description: "We deep-dive into your business needs, goals, and target audience to create a comprehensive project strategy.",
+      icon: Users,
+      color: "emerald"
+    },
+    {
+      number: "02", 
+      title: "Design & Planning",
+      description: "Our team creates detailed wireframes, prototypes, and technical specifications aligned with your vision.",
+      icon: Palette,
+      color: "blue"
+    },
+    {
+      number: "03",
+      title: "Development & Testing",
+      description: "We build your solution using cutting-edge technologies with rigorous testing at every stage.",
+      icon: Monitor,
+      color: "purple"
+    },
+    {
+      number: "04",
+      title: "Launch & Support",
+      description: "We deploy your solution and provide ongoing maintenance to ensure optimal performance.",
+      icon: Zap,
+      color: "orange"
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      icon: Star,
+      title: "Expert Team",
+      description: "Seasoned professionals with years of experience in cutting-edge technologies."
+    },
+    {
+      icon: Clock,
+      title: "On-Time Delivery",
+      description: "We respect deadlines and deliver projects on schedule without compromising quality."
+    },
+    {
+      icon: Shield,
+      title: "Quality Assurance",
+      description: "Rigorous testing and quality control processes ensure bug-free solutions."
+    },
+    {
+      icon: CheckCircle,
+      title: "24/7 Support",
+      description: "Round-the-clock technical support and maintenance for your peace of mind."
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50">
-        <div className="container mx-auto px-4 py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 min-h-screen flex items-center">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-emerald-900/80 to-slate-900/90"></div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-400/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-48 h-48 bg-blue-400/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-40 left-20 w-24 h-24 bg-purple-400/20 rounded-full animate-pulse delay-500"></div>
+        <div className="absolute bottom-20 right-10 w-16 h-16 bg-orange-400/20 rounded-full animate-pulse delay-700"></div>
+
+        <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <div className="space-y-8 text-center lg:text-left">
+              <div className="space-y-6">
+                <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium">
+                  🚀 Professional Services
+                </div>
+                
+                <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
                   Our
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
-                    {" "}Services
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400">
+                    Services
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  From concept to deployment, we offer comprehensive digital solutions 
-                  that help your business thrive in the modern world.
+                
+                <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
+                  From innovative web development to cutting-edge mobile apps, we deliver 
+                  comprehensive digital solutions that transform your business vision into reality.
                 </p>
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8 py-3" asChild>
-                  <NavLink to="/contact">Get Quote</NavLink>
-                </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                  <NavLink to="/about">Learn About Us</NavLink>
-                </Button>
-              </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-600">10+</div>
-                  <div className="text-sm text-gray-600">Services Offered</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-600">500+</div>
-                  <div className="text-sm text-gray-600">Projects Delivered</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-600">99%</div>
-                  <div className="text-sm text-gray-600">Client Satisfaction</div>
-                </div>
-              </div>
             </div>
 
-            {/* Right Content - Visual */}
-            <div className="relative">
-              <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-black/10"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-center space-y-4">
-                    <div className="w-20 h-20 bg-white/20 rounded-full mx-auto flex items-center justify-center">
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold">Premium Quality</h3>
-                    <p className="text-white/80">Excellence in every service</p>
-                  </div>
+            {/* Right Content - Visual Elements */}
+            <div className="relative flex items-center justify-center">
+              <div className="text-white text-center space-y-6">
+                <div className="w-32 h-32 bg-gradient-to-br from-emerald-400 to-blue-600 rounded-full mx-auto flex items-center justify-center shadow-2xl">
+                  <Star className="w-16 h-16 text-white" />
                 </div>
+                <h3 className="text-4xl font-bold">Premium Quality</h3>
+                <p className="text-white/90 text-xl max-w-md leading-relaxed">
+                  Excellence delivered in every project we undertake
+                </p>
               </div>
-              
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-lime-400 rounded-full opacity-80 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-teal-400 rounded-full opacity-60 animate-pulse delay-1000"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Services Section */}
-      <section className="py-20 bg-white">
+      {/* Services Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
               What We Offer
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive digital solutions tailored to meet your business needs and drive growth.
+              Comprehensive digital solutions designed to accelerate your business growth and maximize your success.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Main Service Cards */}
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-emerald-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-emerald-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-emerald-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h2a2 2 0 002-2z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">Web Development</CardTitle>
-                <CardDescription className="text-lg">Custom websites that perform</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  Modern, responsive websites built with the latest technologies. From simple landing pages to complex web applications.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    React, Next.js, Vue.js
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Responsive Design
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    SEO Optimized
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card key={index} className={`group hover:shadow-xl transition-all duration-500 ${service.borderColor} hover:-translate-y-2 border-2 bg-white/80 backdrop-blur-sm`}>
+                  <CardHeader className="text-center space-y-4">
+                    <div className={`w-20 h-20 ${service.iconBg} rounded-full mx-auto flex items-center justify-center ${service.hoverBg} transition-colors duration-300`}>
+                      <Icon className={`w-10 h-10 ${service.iconColor} ${service.hoverIcon} transition-colors`} />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl">{service.title}</CardTitle>
+                      <CardDescription className="text-lg font-medium text-gray-700">
+                        {service.subtitle}
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <p className="text-gray-600 text-center leading-relaxed">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                          <CheckCircle className={`w-4 h-4 ${service.iconColor} mr-3 flex-shrink-0`} />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="pt-4 border-t border-gray-100">
+                      <div className={`text-lg font-bold ${service.iconColor} text-center`}>
+                        {service.price}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-blue-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-blue-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-blue-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">Mobile Apps</CardTitle>
-                <CardDescription className="text-lg">iOS & Android applications</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  Native and cross-platform mobile applications that provide exceptional user experiences.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    React Native, Flutter
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Native Performance
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    App Store Ready
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+              Why Choose Us?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We combine technical expertise with creative innovation to deliver exceptional results.
+            </p>
+          </div>
 
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-purple-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-purple-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-purple-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-purple-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">UI/UX Design</CardTitle>
-                <CardDescription className="text-lg">Beautiful, functional interfaces</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  User-centered design that combines aesthetics with functionality for optimal user experience.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    User Research & Testing
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Wireframes & Prototypes
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Brand Identity
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-orange-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-orange-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-orange-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">Backend Development</CardTitle>
-                <CardDescription className="text-lg">Robust server solutions</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  Scalable backend systems and APIs that power your applications with reliability and performance.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Node.js, Python, PHP
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Database Design
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    API Development
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-red-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-red-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-red-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-red-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">Data Analytics</CardTitle>
-                <CardDescription className="text-lg">Insights that drive decisions</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  Transform your data into actionable insights with comprehensive analytics and visualization solutions.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Data Visualization
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Business Intelligence
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Custom Dashboards
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-indigo-200 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-indigo-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-indigo-500 transition-colors duration-300">
-                  <svg className="w-10 h-10 text-indigo-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl">Digital Marketing</CardTitle>
-                <CardDescription className="text-lg">Grow your online presence</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 text-center">
-                  Strategic digital marketing campaigns that increase visibility and drive conversions.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    SEO & SEM
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Social Media Marketing
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Content Strategy
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center">
+                  <CardHeader className="space-y-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full mx-auto flex items-center justify-center">
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
               Our Process
             </h2>
-            <p className="text-xl text-gray-600">
-              A proven methodology that ensures successful project delivery.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              A proven methodology that ensures successful project delivery from concept to launch.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-emerald-500 text-white rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Discovery</h3>
-              <p className="text-gray-600">
-                We start by understanding your business, goals, and requirements through detailed consultation.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-blue-500 text-white rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Planning</h3>
-              <p className="text-gray-600">
-                We create detailed project plans, wireframes, and technical specifications for your approval.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-purple-500 text-white rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Development</h3>
-              <p className="text-gray-600">
-                Our expert team brings your vision to life using cutting-edge technologies and best practices.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-orange-500 text-white rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
-                4
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Launch</h3>
-              <p className="text-gray-600">
-                We deploy your solution and provide ongoing support to ensure everything runs smoothly.
-              </p>
-            </div>
+            {processSteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden">
+                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${step.color}-400 to-${step.color}-600`}></div>
+                  <CardHeader className="text-center space-y-4">
+                    <div className="relative">
+                      <div className={`w-20 h-20 bg-${step.color}-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-${step.color}-500 transition-colors duration-300`}>
+                        <Icon className={`w-10 h-10 text-${step.color}-600 group-hover:text-white transition-colors`} />
+                      </div>
+                      <div className={`absolute -top-2 -right-2 w-8 h-8 bg-${step.color}-500 text-white rounded-full flex items-center justify-center text-sm font-bold`}>
+                        {step.number}
+                      </div>
+                    </div>
+                    <CardTitle className="text-xl">{step.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 text-center leading-relaxed">
+                      {step.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
-              Ready to Get Started?
+      <section className="relative py-20 bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 bg-white/10 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/5 rounded-full animate-pulse delay-500"></div>
+        </div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white">
+              Ready to Transform Your Business?
             </h2>
-            <p className="text-xl text-emerald-100 leading-relaxed">
-              Let's discuss your project and how our services can help you achieve your business goals. 
-              Get in touch for a free consultation.
+            <p className="text-xl text-white/90 leading-relaxed">
+              Let's discuss your project and create a customized solution that drives real results. 
+              Get started with a free consultation today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-3" asChild>
-                <NavLink to="/contact">Request Quote</NavLink>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-4 bg-white text-emerald-600 hover:bg-gray-100 hover:text-emerald-700 transition-all duration-300 shadow-xl" 
+                asChild
+              >
+                <NavLink to="/contact">Request Free Quote</NavLink>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-3 text-white border-white hover:bg-white hover:text-emerald-600" asChild>
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-4 bg-white text-emerald-600 hover:bg-gray-100 hover:text-emerald-700 transition-all duration-300 shadow-xl" 
+                asChild
+              >
                 <NavLink to="/about">Learn More About Us</NavLink>
               </Button>
             </div>

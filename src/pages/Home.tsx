@@ -1,211 +1,364 @@
 import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Package, BarChart3, Shield, Smartphone, TrendingUp, Users, Clock, Star } from 'lucide-react'
 
 function Home() {
+  const features = [
+    {
+      icon: Package,
+      title: "Smart Inventory Management",
+      description: "Track your products in real-time with automated stock alerts and comprehensive analytics.",
+      color: "blue"
+    },
+    {
+      icon: BarChart3,
+      title: "Advanced Analytics",
+      description: "Get insights into your business with detailed reports and performance metrics.",
+      color: "green"
+    },
+    {
+      icon: Shield,
+      title: "Secure & Reliable",
+      description: "Enterprise-grade security ensures your data is always protected and accessible.",
+      color: "purple"
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile Responsive",
+      description: "Access your inventory from anywhere with our fully responsive design.",
+      color: "orange"
+    },
+    {
+      icon: TrendingUp,
+      title: "Business Growth",
+      description: "Scale your business efficiently with our powerful inventory optimization tools.",
+      color: "red"
+    },
+    {
+      icon: Users,
+      title: "Team Collaboration",
+      description: "Work together seamlessly with role-based access and team management features.",
+      color: "indigo"
+    }
+  ]
+
+  const stats = [
+    { number: "10,000+", label: "Products Managed" },
+    { number: "500+", label: "Happy Customers" },
+    { number: "99.9%", label: "Uptime Guarantee" },
+    { number: "24/7", label: "Support Available" }
+  ]
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Store Manager",
+      company: "TechMart",
+      content: "This inventory system transformed our business operations. We reduced stock-outs by 80% and increased efficiency dramatically.",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      name: "Mike Chen",
+      role: "Operations Director",
+      company: "ElectroPlus",
+      content: "The real-time analytics and automated alerts have saved us thousands in inventory costs. Highly recommended!",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      name: "Lisa Wang",
+      role: "Business Owner",
+      company: "GadgetWorld",
+      content: "Easy to use, powerful features, and excellent support. This is exactly what we needed for our growing business.",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+    }
+  ]
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
-        <div className="container mx-auto px-4 py-20 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Build Amazing
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                    {" "}Digital Experiences
-                  </span>
-                </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  We create stunning websites and applications that help your business grow. 
-                  From concept to deployment, we're here to bring your vision to life.
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8 py-3">
-                  Get Started Today
-                </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                  <NavLink to="/about">Learn More</NavLink>
-                </Button>
-              </div>
+      {/* Hero Section - Full Screen */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&crop=center" 
+            alt="Modern warehouse" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/80 to-purple-900/90"></div>
+        </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">500+</div>
-                  <div className="text-sm text-gray-600">Projects Completed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">99%</div>
-                  <div className="text-sm text-gray-600">Client Satisfaction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">24/7</div>
-                  <div className="text-sm text-gray-600">Support Available</div>
-                </div>
-              </div>
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-400/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-64 h-64 bg-purple-400/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-40 left-20 w-16 h-16 bg-green-400/20 rounded-full animate-pulse delay-500"></div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto space-y-2">
+            {/* Badge */}
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium">
+              <Star className="w-4 h-4 mr-2 text-yellow-400" />
+              #1 Inventory Management System
             </div>
 
-            {/* Right Content - Visual */}
-            <div className="relative">
-              <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-black/10"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-center space-y-4">
-                    <div className="w-20 h-20 bg-white/20 rounded-full mx-auto flex items-center justify-center">
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold">Modern Technology</h3>
-                    <p className="text-white/80">Built with cutting-edge tools</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full opacity-80 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-full opacity-60 animate-pulse delay-1000"></div>
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-32">
+              Smart
+              <span className="inline-block ml-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                Inventory
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-3xl mx-auto">
+              Transform your business with our powerful inventory management system. 
+              Track products and optimize your operations in real-time.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg px-8 py-4 text-blue-600 border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                asChild
+              >
+                <NavLink to="/auth/register">Start Free Trial</NavLink>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg px-8 py-4 text-blue-600 border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                asChild
+              >
+                <NavLink to="#features">Watch Demo</NavLink>
+              </Button>
             </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white">{stat.number}</div>
+                  <div className="text-blue-200 text-sm md:text-base">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section id="features" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Why Choose Us?
+          <div className="text-center space-y-4 mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+              Powerful Features for
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                {" "}Modern Business
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine creativity, technology, and strategy to deliver exceptional results for your business.
+              Everything you need to manage your inventory efficiently and grow your business faster.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature Cards */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                  <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-xl">Lightning Fast</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Optimized performance ensures your website loads quickly and provides excellent user experience.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              const colorClasses = {
+                blue: "bg-blue-100 text-blue-600 group-hover:bg-blue-500 border-blue-200",
+                green: "bg-green-100 text-green-600 group-hover:bg-green-500 border-green-200",
+                purple: "bg-purple-100 text-purple-600 group-hover:bg-purple-500 border-purple-200",
+                orange: "bg-orange-100 text-orange-600 group-hover:bg-orange-500 border-orange-200",
+                red: "bg-red-100 text-red-600 group-hover:bg-red-500 border-red-200",
+                indigo: "bg-indigo-100 text-indigo-600 group-hover:bg-indigo-500 border-indigo-200"
+              }
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-green-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-green-500 transition-colors">
-                  <svg className="w-8 h-8 text-green-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-xl">Reliable & Secure</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Built with security best practices and reliable infrastructure to keep your data safe.
-                </CardDescription>
-              </CardContent>
-            </Card>
+              return (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-2 hover:-translate-y-2">
+                  <CardHeader className="text-center pb-4">
+                    <div className={`w-16 h-16 rounded-2xl mx-auto flex items-center justify-center transition-all duration-300 ${colorClasses[feature.color as keyof typeof colorClasses]}`}>
+                      <Icon className="w-8 h-8 group-hover:text-white transition-colors" />
+                    </div>
+                    <CardTitle className="text-xl font-bold mt-4">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-center text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-purple-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                  <svg className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-xl">Customer Focused</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  We prioritize your needs and work closely with you to achieve your business goals.
-                </CardDescription>
-              </CardContent>
-            </Card>
+      {/* Demo Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+                  See It in Action
+                </h3>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Watch how our inventory management system streamlines your operations 
+                  and provides real-time insights into your business performance.
+                </p>
+              </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-orange-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-orange-500 transition-colors">
-                  <svg className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-700">Real-time inventory tracking</span>
                 </div>
-                <CardTitle className="text-xl">Mobile First</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Responsive design ensures perfect experience across all devices and screen sizes.
-                </CardDescription>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-700">Automated low stock alerts</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-700">Comprehensive analytics dashboard</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-700">Multi-location inventory management</span>
+                </div>
+              </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-red-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-red-500 transition-colors">
-                  <svg className="w-8 h-8 text-red-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-xl">Expert Team</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Our experienced developers and designers bring years of expertise to your project.
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <Button size="lg" className="px-8 py-3" asChild>
+                <NavLink to="/auth/register">Try It Free</NavLink>
+              </Button>
+            </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-indigo-200">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full mx-auto flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
-                  <svg className="w-8 h-8 text-indigo-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 2v12a2 2 0 002 2h6a2 2 0 002-2V6M9 6h6M9 10h6M9 14h6" />
-                  </svg>
+            <div className="relative">
+              <div className="relative bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" 
+                  alt="Dashboard Preview"
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h4 className="text-xl font-bold">Live Dashboard</h4>
+                  <p className="text-gray-300">Real-time inventory insights</p>
                 </div>
-                <CardTitle className="text-xl">24/7 Support</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Round-the-clock support ensures your website runs smoothly and issues are resolved quickly.
-                </CardDescription>
-              </CardContent>
-            </Card>
+              </div>
+              
+              {/* Floating cards */}
+              <div className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-4 transform rotate-3">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-green-500" />
+                  <span className="text-sm font-medium">Sales +25%</span>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-4 transform -rotate-3">
+                <div className="flex items-center gap-2">
+                  <Package className="w-5 h-5 text-blue-500" />
+                  <span className="text-sm font-medium">1,234 Products</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+              What Our Customers Say
+            </h3>
+            <p className="text-xl text-gray-600">
+              Join thousands of businesses that trust our inventory management system
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    "{testimonial.content}"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                      <div className="text-sm text-gray-500">{testimonial.role}, {testimonial.company}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
-              Ready to Start Your Project?
-            </h2>
+      <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560472355-536de3962603?w=1920&h=400&fit=crop')] bg-cover bg-center opacity-10"></div>
+        
+        <div className="relative container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h3 className="text-4xl md:text-5xl font-bold text-white">
+              Ready to Transform Your Business?
+            </h3>
             <p className="text-xl text-blue-100 leading-relaxed">
-              Let's work together to create something amazing. Contact us today for a free consultation 
-              and see how we can help your business grow.
+              Join thousands of businesses that have revolutionized their inventory management. 
+              Start your free trial today and see the difference in just 24 hours.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-3" asChild>
-                <NavLink to="/contact">Get Free Quote</NavLink>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg px-8 py-4 text-blue-600 border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                asChild
+              >
+                <NavLink to="/auth/register">Start Free Trial</NavLink>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-3 text-white border-white hover:bg-white hover:text-blue-600" asChild>
-                <NavLink to="/service">View Our Services</NavLink>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg px-8 py-4 text-blue-600 border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                asChild
+              >
+                <NavLink to="/contact">Contact Sales</NavLink>
               </Button>
+            </div>
+
+            <div className="flex items-center justify-center gap-8 pt-8 text-blue-200">
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5" />
+                <span>30-day free trial</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5" />
+                <span>No credit card required</span>
+              </div>
             </div>
           </div>
         </div>
