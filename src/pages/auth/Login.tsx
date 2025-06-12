@@ -1,9 +1,11 @@
+import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { EyeOff, Mail, Lock, ArrowRight, Eye } from 'lucide-react'
 import Swal from 'sweetalert2'
+import { authLogin, type LoginData } from '@/services/apiAuth'
 
 function Login() {
 
@@ -12,44 +14,44 @@ function Login() {
     // setShowPassword คือฟังก์ชันสำหรับเปลี่ยนค่า state
     const [showPassword, setShowPassword] = useState(false)
 
-    // สร้างตัวแปร state สำหรับเก็บข้อมูลอีเมลและรหัสผ่าน
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    })
+    // การใช้ useForm hook จาก react-hook-form
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginData>()
 
-    // สร้างฟังก์ชัน submitForm สำหรับจัดการการส่งฟอร์ม
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault() // ป้องกันการรีเฟรชหน้าเว็บ
-        console.log('Form submitted:', formData) // แสดงข้อมูลฟอร์มในคอนโซล
-        if (formData.email == "admin@email.com" && formData.password == "123456") {
-            // แสดงข้อความยืนยันการเข้าสู่ระบบสำเร็จ
+    // ฟังก์ชันสำหรับจัดการการส่งข้อมูล
+    const onSubmit = async (data: LoginData) => {
+      authLogin(data)
+        .then(response => {
+          if(response.data.status === true){
+            // ถ้าเข้าสู่ระบบสำเร็จ
             Swal.fire({
-                title: 'เข้าสู่ระบบสำเร็จ',
-                text: 'ยินดีต้อนรับกลับ!',
-                icon: 'success',
-                confirmButtonText: 'ตกลง'
+              title: 'เข้าสู่ระบบสำเร็จ',
+              text: 'ยินดีต้อนรับกลับ!',
+              icon: 'success',
+              confirmButtonText: 'ตกลง'
             }).then(() => {
-                // นำทางไปยังหน้าแดชบอร์ดหลังจากกดยืนยัน
-                window.location.href = '/admin';
-            });
-        } else {
-            // แสดงข้อความเตือนหากข้อมูลไม่ถูกต้อง
+              // เปลี่ยนเส้นทางไปยังหน้าแดชบอร์ด
+              window.location.href = '/dashboard'
+            })
+          } else {
+            // ถ้าเข้าสู่ระบบไม่สำเร็จ
             Swal.fire({
-                title: 'เข้าสู่ระบบล้มเหลว',
-                text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
-                icon: 'error',
-                confirmButtonText: 'ลองอีกครั้ง'
-            });
-        }
-    }
-
-    // สร้างฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงข้อมูลในฟอร์ม
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value // อัปเดตค่าใน formData ตามชื่อ input
+              title: 'เข้าสู่ระบบไม่สำเร็จ',
+              text: response.data.message || 'กรุณาตรวจสอบข้อมูลอีกครั้ง',
+              icon: 'error',
+              confirmButtonText: 'ตกลง'
+            })
+          }
         })
+        .catch(error => {
+          // ถ้ามีข้อผิดพลาดในการเข้าสู่ระบบ
+          Swal.fire({
+            title: 'เกิดข้อผิดพลาด',
+            text: error.response?.data?.message || 'ไม่สามารถเข้าสู่ระบบได้',
+            icon: 'error',
+            confirmButtonText: 'ตกลง'
+          })
+        }
+      )
     }
 
   return (
@@ -62,7 +64,7 @@ function Login() {
       </CardHeader>
       
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email Field */}
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
@@ -71,15 +73,21 @@ function Login() {
             </label>
             <div className="relative">
               <input
+                {...register('email', { 
+                  required: 'กรุณากรอกอีเมล' ,
+                  validate: {
+                    isEmail: value => /^\S+@\S+\.\S+$/.test(value) || 'กรุณากรอกอีเมลที่ถูกต้อง'
+                  }
+                })}
                 id="email"
                 name="email"
-                type="email"
-                required
+                type="text"
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกอีเมลของคุณ"
-                value={formData.email}
-                onChange={handleInputChange}
               />
+              {errors.email && (
+                <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
+              )}
             </div>
           </div>
 
@@ -91,15 +99,22 @@ function Login() {
             </label>
             <div className="relative">
               <input
+                {...register('password', { 
+                  required: 'กรุณากรอกรหัสผ่าน',
+                  minLength: {
+                    value: 6,
+                    message: 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร'
+                  }
+                })}
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                required
                 className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกรหัสผ่านของคุณ"
-                value={formData.password}
-                onChange={handleInputChange}
               />
+              {errors.password && (
+                <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>
+              )}
               <button
                 type="button"
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
