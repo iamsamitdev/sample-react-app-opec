@@ -1,52 +1,21 @@
+import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Eye, EyeOff, Mail, Lock, User, UserPlus, Phone, Shield } from 'lucide-react'
 import Swal from 'sweetalert2'
+import type { RegisterData } from '@/services/apiAuth'
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [formData, setFormData] = useState({
-    fullname: '',
-    username: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    tel: '',
-    role: ''
-  })
+  
+  // การใช้ useForm hook จาก react-hook-form
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<RegisterData>()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle registration logic here
-    console.log('Registration attempt:', formData)
-    if (formData.password === formData.password_confirmation) {
-      Swal.fire({
-        title: 'ลงทะเบียนสำเร็จ',
-        text: 'ยินดีต้อนรับสู่ระบบจัดการสินค้าคลัง!',
-        icon: 'success',
-        confirmButtonText: 'ตกลง'
-      }).then(() => {
-        // Redirect to login page or dashboard
-        window.location.href = '/auth/login'
-      })
-    } else {
-      Swal.fire({
-        title: 'ข้อผิดพลาด',
-        text: 'รหัสผ่านไม่ตรงกัน กรุณาลองอีกครั้ง',
-        icon: 'error',
-        confirmButtonText: 'ตกลง'
-      })
-    }
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+  // สร้างฟังก์ชัน submit handler
+  const onSubmit = async (data: RegisterData) => {
+    console.log('Form Data:', data)
   }
 
   return (
@@ -59,7 +28,7 @@ function Register() {
       </CardHeader>
       
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Row 1: Fullname and Username */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Fullname Field */}
@@ -69,15 +38,20 @@ function Register() {
                 ชื่อ-นามสกุล
               </label>
               <input
+                {...register('fullname', { 
+                  required: "กรุณากรอกชื่อ-นามสกุล",
+                  minLength: {
+                    value: 3,
+                    message: "ชื่อ-นามสกุลต้องมีอย่างน้อย 3 ตัวอักษร"
+                  } 
+                })}
                 id="fullname"
                 name="fullname"
                 type="text"
-                required
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกชื่อ-นามสกุล"
-                value={formData.fullname}
-                onChange={handleInputChange}
               />
+              {errors.fullname && <p className="text-red-500 text-sm">{errors.fullname.message}</p>}
             </div>
 
             {/* Username Field */}
@@ -87,15 +61,24 @@ function Register() {
                 ชื่อผู้ใช้
               </label>
               <input
+                {...register('username', { 
+                  required: "กรุณากรอกชื่อผู้ใช้",
+                  minLength: {
+                    value: 3,
+                    message: "ชื่อผู้ใช้ต้องมีอย่างน้อย 3 ตัวอักษร"
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "ชื่อผู้ใช้ต้องไม่เกิน 20 ตัวอักษร"
+                  } 
+                })}
                 id="username"
                 name="username"
                 type="text"
-                required
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกชื่อผู้ใช้"
-                value={formData.username}
-                onChange={handleInputChange}
               />
+              {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
             </div>
           </div>
 
@@ -108,15 +91,20 @@ function Register() {
                 เบอร์โทรศัพท์
               </label>
               <input
+                {...register('tel', { 
+                  required: "กรุณากรอกเบอร์โทรศัพท์",
+                  pattern: {
+                    value: /^0[0-9]{9}$/,
+                    message: "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง (10 หลัก)"
+                  } 
+                })}
                 id="tel"
                 name="tel"
                 type="tel"
-                required
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกเบอร์โทรศัพท์"
-                value={formData.tel}
-                onChange={handleInputChange}
               />
+              {errors.tel && <p className="text-red-500 text-sm">{errors.tel.message}</p>}
             </div>
 
             {/* Email Field */}
@@ -126,15 +114,20 @@ function Register() {
                 อีเมล
               </label>
               <input
+                {...register('email', { 
+                  required: "กรุณากรอกอีเมล",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "กรุณากรอกอีเมลที่ถูกต้อง"
+                  } 
+                })}
                 id="email"
                 name="email"
                 type="email"
-                required
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                 placeholder="กรอกอีเมล"
-                value={formData.email}
-                onChange={handleInputChange}
               />
+              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
           </div>
 
@@ -148,15 +141,20 @@ function Register() {
               </label>
               <div className="relative">
                 <input
+                  {...register('password', { 
+                    required: "กรุณากรอกรหัสผ่าน",
+                    minLength: {
+                      value: 6,
+                      message: "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+                    } 
+                  })}
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  required
                   className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                   placeholder="สร้างรหัสผ่าน"
-                  value={formData.password}
-                  onChange={handleInputChange}
                 />
+                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                 <button
                   type="button"
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
@@ -175,21 +173,22 @@ function Register() {
               </label>
               <div className="relative">
                 <input
+                  {...register("password_confirmation", {
+                      required: "กรุณายืนยันรหัสผ่าน",
+                      validate: (value) => value === watch("password") || "รหัสผ่านไม่ตรงกัน",
+                  })}
                   id="password_confirmation"
                   name="password_confirmation"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  required
+                  type="password"
                   className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400"
                   placeholder="ยืนยันรหัสผ่าน"
-                  value={formData.password_confirmation}
-                  onChange={handleInputChange}
                 />
+                {errors.password_confirmation && <p className="text-red-500 text-sm">{errors.password_confirmation.message}</p>}
                 <button
                   type="button"
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
             </div>
@@ -202,19 +201,18 @@ function Register() {
               บทบาท
             </label>
             <select
+              {...register('role', { 
+                required: "กรุณาเลือกบทบาท", 
+              })}
               id="role"
               name="role"
-              required
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 bg-white"
-              value={formData.role}
-              onChange={handleInputChange}
             >
               <option value="">เลือกบทบาท</option>
-              <option value="admin">ผู้ดูแลระบบ</option>
-              <option value="manager">ผู้จัดการ</option>
-              <option value="employee">พนักงาน</option>
-              <option value="user">ผู้ใช้งานทั่วไป</option>
+              <option value="1">ผู้ใช้งานทั่วไป</option>
+              <option value="2">ผู้ดูแลระบบ</option>
             </select>
+            {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
           </div>
 
           {/* Terms and Conditions */}
@@ -222,7 +220,6 @@ function Register() {
             <input
               type="checkbox"
               id="terms"
-              required
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors mt-1"
             />
             <label htmlFor="terms" className="text-sm text-gray-600 leading-relaxed">
