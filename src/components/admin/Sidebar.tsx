@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router'
 import { Package2, Home, Package, Tags, BarChart3, FileText, Settings, X, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { authLogout } from '@/services/apiAuth'
 
 interface AdminSidebarProps {
   onClose?: () => void
@@ -15,6 +16,17 @@ function AdminSidebar({ onClose }: AdminSidebarProps) {
     { name: 'รายงาน', href: '/admin/reports', icon: FileText },
     { name: 'ตั้งค่า', href: '/admin/settings', icon: Settings },
   ]
+
+  // ฟังก์ชันสำหรับออกจากระบบ
+  const handleLogout = async () => {
+    try {
+      await authLogout()
+      localStorage.removeItem('token')
+      window.location.href = '/auth/login'
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
 
   return (
     <div className="flex h-full flex-col bg-white border-r border-gray-200">
@@ -52,7 +64,7 @@ function AdminSidebar({ onClose }: AdminSidebarProps) {
 
       {/* Footer */}
       <div className="p-4 border-t border-gray-200">
-        <Button variant="ghost" className="w-full justify-start gap-3 text-red-600 hover:bg-red-50 hover:text-red-700">
+        <Button onClick={handleLogout} variant="ghost" className="w-full justify-start gap-3 text-red-600 hover:bg-red-50 hover:text-red-700">
           <LogOut className="h-5 w-5" />
           ออกจากระบบ
         </Button>

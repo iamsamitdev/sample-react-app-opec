@@ -31,7 +31,7 @@ const api = axios.create({
 })
 
 // อ่าน token จาก localStorage
-let token = localStorage.getItem('token') || ''
+const token = localStorage.getItem('token') || ''
 
 const apiwithAuth = axios.create({
     baseURL: BASE_URL,
