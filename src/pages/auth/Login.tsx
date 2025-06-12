@@ -31,7 +31,7 @@ function Login() {
                 confirmButtonText: 'ตกลง'
             }).then(() => {
                 // นำทางไปยังหน้าแดชบอร์ดหลังจากกดยืนยัน
-                window.location.href = '/dashboard';
+                window.location.href = '/admin';
             });
         } else {
             // แสดงข้อความเตือนหากข้อมูลไม่ถูกต้อง
