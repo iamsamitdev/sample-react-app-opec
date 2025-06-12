@@ -30,6 +30,22 @@ const api = axios.create({
     timeout: 10000, // กำหนดเวลา timeout เป็น 10 วินาที
 })
 
+// อ่าน token จาก localStorage
+const token = localStorage.getItem('token')
+if (!token) {
+    throw new Error('Token not found in localStorage')
+}
+
+const apiwithAuth = axios.create({
+    baseURL: BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
+    },
+    timeout: 10000, // กำหนดเวลา timeout เป็น 10 วินาที
+})
+
 // ฟังก์ชันสำหรับเข้าสู่ระบบ
 const authLogin = (data: LoginData) => {
     return api.post('/login', data)
@@ -40,5 +56,10 @@ const authRegister = (data: RegisterData) => {
     return api.post('/register', data)
 }
 
-export { authLogin, authRegister }
+// ฟังกชันสำหรับออกจากระบบ
+const authLogout = () => {
+    return apiwithAuth.post('/logout')
+}
+
+export { authLogin, authRegister, authLogout }
 export type { LoginData, RegisterData }

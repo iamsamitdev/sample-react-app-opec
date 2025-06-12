@@ -30,7 +30,7 @@ function Login() {
               confirmButtonText: 'ตกลง'
             }).then(() => {
               // เปลี่ยนเส้นทางไปยังหน้าแดชบอร์ด
-              window.location.href = '/dashboard'
+              window.location.href = '/admin'
             })
           } else {
             // ถ้าเข้าสู่ระบบไม่สำเร็จ
