@@ -29,6 +29,8 @@ function Login() {
               icon: 'success',
               confirmButtonText: 'ตกลง'
             }).then(() => {
+              // บันทึก token ลง localStorage
+              localStorage.setItem('token', response.data.token)
               // เปลี่ยนเส้นทางไปยังหน้าแดชบอร์ด
               window.location.href = '/admin'
             })

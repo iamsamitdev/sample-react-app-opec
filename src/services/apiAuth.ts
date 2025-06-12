@@ -31,10 +31,7 @@ const api = axios.create({
 })
 
 // อ่าน token จาก localStorage
-const token = localStorage.getItem('token')
-if (!token) {
-    throw new Error('Token not found in localStorage')
-}
+let token = localStorage.getItem('token') || ''
 
 const apiwithAuth = axios.create({
     baseURL: BASE_URL,
