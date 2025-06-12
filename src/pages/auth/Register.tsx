@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Eye, EyeOff, Mail, Lock, User, UserPlus, Phone, Shield } from 'lucide-react'
 import Swal from 'sweetalert2'
-import type { RegisterData } from '@/services/apiAuth'
+import { authRegister, type RegisterData } from '@/services/apiAuth'
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
@@ -16,6 +16,29 @@ function Register() {
   // สร้างฟังก์ชัน submit handler
   const onSubmit = async (data: RegisterData) => {
     console.log('Form Data:', data)
+    // ส่งข้อมูลไปยัง API
+    authRegister(data)
+      .then(response => {
+        if (response.data.status === true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'สมัครสมาชิกสำเร็จ',
+            text: 'คุณได้สร้างบัญชีผู้ใช้เรียบร้อยแล้ว',
+            confirmButtonText: 'ตกลง'
+          }).then(() => {
+            // นำทางไปยังหน้าเข้าสู่ระบบหลังจากสมัครสมาชิกสำเร็จ
+            window.location.href = '/auth/login'
+          })
+        }
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'เกิดข้อผิดพลาด',
+          text: error.response?.data?.message || 'ไม่สามารถสมัครสมาชิกได้ในขณะนี้',
+          confirmButtonText: 'ตกลง'
+        })
+      })
   }
 
   return (
